@@ -185,6 +185,52 @@ nav {
     transform: translateY(-3px);
     box-shadow: 0 10px 25px rgba(255,107,53,0.4);
 }
+/* Social Media Styles */
+.social-media {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+
+.social-media h4 {
+    color: #2c5530;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    background: #4a7c59;
+    color: white;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 1.2rem;
+}
+
+.social-links a:hover {
+    background: #2c5530;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(74, 124, 89, 0.4);
+}
+
+.social-links a:nth-child(1):hover { background: #e4405f; } /* Instagram */
+.social-links a:nth-child(2):hover { background: #1877f2; } /* Facebook */
+.social-links a:nth-child(3):hover { background: #0077b5; } /* LinkedIn */
+.social-links a:nth-child(4):hover { background: #1da1f2; } /* Twitter */
+.social-links a:nth-child(5):hover { background: #00d924; } /* NextDoor */
+.social-links a:nth-child(6):hover { background: #ff6b35; } /* Email */
 
 /* Services Section */
 .services {
