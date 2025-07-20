@@ -15,25 +15,4 @@
     }
   ],
   "scriptFile": "../index.js"
-}
-{
-  "disabled": false,
-  "name": "storeLeads",
-  "description": "Azure Function to store Integral Exterior leads in Table Storage",
-  "entryPoint": "storeLeads",
-  "language": "javascript",
-  "bindings": [
-    {
-      "type": "httpTrigger",
-      "direction": "in",
-      "authLevel": "anonymous",
-      "methods": ["get", "post", "options"],
-      "route": "storeLeads"
-    },
-    {
-      "type": "http",
-      "direction": "out",
-      "name": "$return"
-    }
-  ]
-}
+}   

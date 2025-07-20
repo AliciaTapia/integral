@@ -1,0 +1,33 @@
+{
+  "name": "integral-exterior-function",
+  "version": "1.0.0",
+  "description": "Azure Function to store Integral Exterior leads in Table Storage",
+  "main": "api/storeLeads/index.js",
+  "scripts": {
+    "start": "swa start",
+    "test": "echo \"No tests yet...\"",
+    "build": "echo 'Frontend build skipped'",
+    "build:azure": "npm install && cd api/storeLeads && npm install",
+    "deploy": "swa deploy --app-name integral-exterior --env production --api-location api/storeLeads --output-location api/storeLeads/dist"
+  },
+  "dependencies": {
+    "@azure/functions": "^4.5.0",
+    "@azure/data-tables": "^13.2.2"
+  },
+  "devDependencies": {
+    "@azure/functions-core-tools": "^4.0.5",
+    "@types/node": "18.x"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "azure",
+    "functions",
+    "table-storage",
+    "leads",
+    "crm"
+  ],
+  "author": "Integral Exterior",
+  "license": "MIT"
+}
