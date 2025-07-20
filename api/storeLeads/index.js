@@ -3,7 +3,7 @@ const { TableClient } = require('@azure/data-tables');
 
 // Initialize Table Client
 const connectionString = process.env.AZURE_STORAGE_CONNECTION_STRING;
-const tableName = 'IntegralExteriorLeads';
+const tableName = 'leads';
 
 app.http('storeLeads', {
     methods: ['GET', 'POST', 'OPTIONS'],

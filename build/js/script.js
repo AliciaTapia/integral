@@ -63,37 +63,48 @@ function setupSmoothScrolling() {
 }
 
 // Contact Form Setup
-function setupContactForm() {
+async function setupContactForm() {
     const contactForm = document.getElementById('contactForm');
     
     if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
+        contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             
             const formData = new FormData(this);
             const leadData = {
-                id: Date.now(),
                 name: formData.get('name'),
                 email: formData.get('email'),
                 phone: formData.get('phone'),
                 service: formData.get('service'),
                 budget: formData.get('budget'),
-                message: formData.get('message'),
-                status: 'new',
-                date: new Date().toLocaleDateString()
+                message: formData.get('message')
             };
             
-            // Add lead to storage
-            addLead(leadData);
-            
-            // Show success message
-            showNotification('Thank you! Your quote request has been submitted. We\'ll contact you soon!', 'success');
-            
-            // Reset form
-            this.reset();
-            
-            // Refresh CRM data
-            displayLeads();
+            try {
+                const response = await fetch('/api/storeLeads', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(leadData)
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    showNotification('Thank you! Your quote request has been submitted. We\'ll contact you soon!', 'success');
+                    this.reset();
+                } else {
+                    showNotification('There was an error submitting your request. Please try again.', 'error');
+                }
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                showNotification('There was an error submitting your request. Please try again.', 'error');
+            }
         });
     }
 }

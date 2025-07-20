@@ -2,19 +2,17 @@
   "name": "integral-exterior-function",
   "version": "1.0.0",
   "description": "Azure Function to store Integral Exterior leads in Table Storage",
-  "main": "src/functions/storeLeads.js",
-  "scripts": {
+  "main": "api/storeLeads/index.js",
+   "scripts": {
     "start": "func start",
-    "test": "echo \"No tests yet...\"",
-    "deploy": "func azure functionapp publish <your-function-app-name>"
+    "test": "echo \"No tests yet...\""
   },
   "dependencies": {
     "@azure/functions": "^4.0.0",
     "@azure/data-tables": "^13.2.2"
   },
   "devDependencies": {
-    "azure/functions-core-tools": "^4.0.5",
-    "@azure/functions": "^4.5.0",
+    "azure-functions-core-tools": "^4.0.5",
     "typescript": "^4.0.0",
     "@types/node": "18.x"
   },
