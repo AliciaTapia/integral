@@ -3,12 +3,15 @@
   "version": "1.0.0",
   "description": "Azure Function to store Integral Exterior leads in Table Storage",
   "main": "api/storeLeads/index.js",
+  
   "scripts": {
     "start": "swa start",
-    "test": "echo \"No tests yet...\"",
+    "test": "jest",
     "build": "echo 'Frontend build skipped'",
     "build:azure": "npm install && cd api/storeLeads && npm install",
-    "deploy": "swa deploy --app-name integral-exterior --env production --api-location api/storeLeads --output-location api/storeLeads/dist"
+    "deploy": "swa deploy --app-name integral-exterior --env production --api-location api/storeLeads --output-location api/storeLeads/dist",
+    "start:azure": "func start"
+  },
   },
   "dependencies": {
     "@azure/functions": "^4.0.0",
@@ -16,7 +19,8 @@
   },
   "devDependencies": {
     "@azure/functions-core-tools": "^4.0.5",
-    "@types/node": "18.x"
+    "@types/node": "18.x",
+    "jest": "^29.0.0"
   },
   "engines": {
     "node": ">=20.0.0"
