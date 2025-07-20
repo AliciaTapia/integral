@@ -11,7 +11,7 @@
     "deploy": "swa deploy --app-name integral-exterior --env production --api-location api/storeLeads --output-location api/storeLeads/dist"
   },
   "dependencies": {
-    "@azure/functions": "^4.5.0",
+    "@azure/functions": "^4.0.0",
     "@azure/data-tables": "^13.2.2"
   },
   "devDependencies": {
@@ -19,7 +19,7 @@
     "@types/node": "18.x"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=20.0.0"
   },
   "keywords": [
     "azure",

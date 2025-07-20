@@ -1,12 +1,19 @@
 {
   "name": "integral-exterior",
   "version": "1.0.0",
+  "description": "A project for managing the exterior aspects of Integral.",
   "scripts": {
-    "start": "swa start",
-    "build": "echo 'Frontend build skipped'",
-    "build:azure": "npm install"
+    "build": "rimraf build && mkdirp build && cpx \"src/**/*.{html,js,css,json,png,svg,jpg}\" build",
+    "start": "swa start"
   },
-  "dependencies": {
-    "@azure/static-web-apps-cli": "^1.0.0"
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "devDependencies": {
+    "@azure/static-web-apps-cli": "^1.0.0",
+    "copyfiles": "^2.4.1",
+    "cpx": "^1.5.0",
+    "mkdirp": "^3.0.1",
+    "rimraf": "^5.0.5"
   }
 }

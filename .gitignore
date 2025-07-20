@@ -1,5 +1,6 @@
 # Dependencies
 /node_modules
+node_modules/
 /.pnp
 .pnp.js
 
@@ -10,6 +11,7 @@
 # Build artifacts
 /build
 /dist
+build/
 
 # Azure artifacts
 .azure/
