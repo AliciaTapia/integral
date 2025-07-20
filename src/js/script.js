@@ -81,7 +81,7 @@ async function setupContactForm() {
             };
             
             try {
-                const response = await fetch('/api/storeLeads', {
+                const response = await fetch('https://red-grass-08edfac10.2.azurestaticapps.net/api/storeLeads', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -159,86 +159,86 @@ function showTab(tabName) {
     }
 }
 
-// Lead Management Functions
-// function addLead(leadData) {
-//     if (!window.crmData.leads) {
-//         window.crmData.leads = [];
-//     }
-//     window.crmData.leads.push(leadData);
-//     saveCRMData();
-// }
+//Lead Management Functions
+function addLead(leadData) {
+    if (!window.crmData.leads) {
+        window.crmData.leads = [];
+    }
+    window.crmData.leads.push(leadData);
+    saveCRMData();
+}
 
-// function displayLeads() {
-//     const leadsTableBody = document.getElementById('leadsTableBody');
-//     if (!leadsTableBody) return;
+function displayLeads() {
+    const leadsTableBody = document.getElementById('leadsTableBody');
+    if (!leadsTableBody) return;
     
-//     const leads = window.crmData.leads || [];
+    const leads = window.crmData.leads || [];
     
-//     if (leads.length === 0) {
-//         leadsTableBody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: #666;">No leads found</td></tr>';
-//         return;
-//     }
+    if (leads.length === 0) {
+        leadsTableBody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: #666;">No leads found</td></tr>';
+        return;
+    }
     
-//     leadsTableBody.innerHTML = leads.map(lead => `
-//         <tr>
-//             <td>${lead.name}</td>
-//             <td>${lead.email}</td>
-//             <td>${lead.phone}</td>
-//             <td>${formatService(lead.service)}</td>
-//             <td>${formatBudget(lead.budget)}</td>
-//             <td><span class="status-badge status-${lead.status}">${lead.status}</span></td>
-//             <td>${lead.date}</td>
-//         </tr>
-//     `).join('');
-// }
+    leadsTableBody.innerHTML = leads.map(lead => `
+        <tr>
+            <td>${lead.name}</td>
+            <td>${lead.email}</td>
+            <td>${lead.phone}</td>
+            <td>${formatService(lead.service)}</td>
+            <td>${formatBudget(lead.budget)}</td>
+            <td><span class="status-badge status-${lead.status}">${lead.status}</span></td>
+            <td>${lead.date}</td>
+        </tr>
+    `).join('');
+}
 
-// function displayCustomers() {
-//     const customersTableBody = document.getElementById('customersTableBody');
-//     if (!customersTableBody) return;
+function displayCustomers() {
+    const customersTableBody = document.getElementById('customersTableBody');
+    if (!customersTableBody) return;
     
-//     const customers = window.crmData.customers || [];
+    const customers = window.crmData.customers || [];
     
-//     if (customers.length === 0) {
-//         customersTableBody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: #666;">No customers found</td></tr>';
-//         return;
-//     }
+    if (customers.length === 0) {
+        customersTableBody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: #666;">No customers found</td></tr>';
+        return;
+    }
     
-//     customersTableBody.innerHTML = customers.map(customer => `
-//         <tr>
-//             <td>${customer.name}</td>
-//             <td>${customer.email}</td>
-//             <td>${customer.phone}</td>
-//             <td>${customer.address}</td>
-//             <td>${customer.totalProjects}</td>
-//             <td>$${customer.totalValue.toLocaleString()}</td>
-//             <td>${customer.lastService}</td>
-//         </tr>
-//     `).join('');
-// }
+    customersTableBody.innerHTML = customers.map(customer => `
+        <tr>
+            <td>${customer.name}</td>
+            <td>${customer.email}</td>
+            <td>${customer.phone}</td>
+            <td>${customer.address}</td>
+            <td>${customer.totalProjects}</td>
+            <td>$${customer.totalValue.toLocaleString()}</td>
+            <td>${customer.lastService}</td>
+        </tr>
+    `).join('');
+}
 
-// function displayProjects() {
-//     const projectsTableBody = document.getElementById('projectsTableBody');
-//     if (!projectsTableBody) return;
+function displayProjects() {
+    const projectsTableBody = document.getElementById('projectsTableBody');
+    if (!projectsTableBody) return;
     
-//     const projects = window.crmData.projects || [];
+    const projects = window.crmData.projects || [];
     
-//     if (projects.length === 0) {
-//         projectsTableBody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: #666;">No projects found</td></tr>';
-//         return;
-//     }
+    if (projects.length === 0) {
+        projectsTableBody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: #666;">No projects found</td></tr>';
+        return;
+    }
     
-//     projectsTableBody.innerHTML = projects.map(project => `
-//         <tr>
-//             <td>${project.name}</td>
-//             <td>${project.customer}</td>
-//             <td>${formatService(project.serviceType)}</td>
-//             <td>$${project.value.toLocaleString()}</td>
-//             <td><span class="status-badge status-${project.status}">${project.status}</span></td>
-//             <td>${project.startDate}</td>
-//             <td>${project.completion}%</td>
-//         </tr>
-//     `).join('');
-// }
+    projectsTableBody.innerHTML = projects.map(project => `
+        <tr>
+            <td>${project.name}</td>
+            <td>${project.customer}</td>
+            <td>${formatService(project.serviceType)}</td>
+            <td>$${project.value.toLocaleString()}</td>
+            <td><span class="status-badge status-${project.status}">${project.status}</span></td>
+            <td>${project.startDate}</td>
+            <td>${project.completion}%</td>
+        </tr>
+    `).join('');
+}
 
 // Utility Functions
 function formatService(service) {
@@ -256,19 +256,19 @@ function formatService(service) {
     return serviceMap[service] || service;
 }
 
-// function formatBudget(budget) {
-//     if (!budget) return 'Not specified';
+function formatBudget(budget) {
+    if (!budget) return 'Not specified';
     
-//     const budgetMap = {
-//         'under-1000': 'Under $1,000',
-//         '1000-5000': '$1,000 - $5,000',
-//         '5000-10000': '$5,000 - $10,000',
-//         '10000-25000': '$10,000 - $25,000',
-//         'over-25000': 'Over $25,000'
-//     };
+    const budgetMap = {
+        'under-1000': 'Under $1,000',
+        '1000-5000': '$1,000 - $5,000',
+        '5000-10000': '$5,000 - $10,000',
+        '10000-25000': '$10,000 - $25,000',
+        'over-25000': 'Over $25,000'
+    };
     
-//     return budgetMap[budget] || budget;
-// }
+    return budgetMap[budget] || budget;
+}
 
 function showNotification(message, type = 'info') {
     // Create notification element
