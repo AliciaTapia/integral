@@ -12,7 +12,7 @@ function initializeWebsite() {
     setupContactForm();
     setupCRMSystem();
     setupAnimations();
-    loadSampleData();
+  //  loadSampleData();
 }
 
 // Mobile Menu Setup
@@ -347,112 +347,138 @@ function saveCRMData() {
     console.log('CRM data saved:', window.crmData);
 }
 
-function loadSampleData() {
+//function loadSampleData() {
     // Load sample data for demonstration
-    window.crmData = {
-        leads: [
-            {
-                id: 1,
-                name: 'John Smith',
-                email: 'john.smith@email.com',
-                phone: '(281) 555-0101',
-                service: 'landscape-design',
-                budget: '5000-10000',
-                message: 'Looking for a complete backyard redesign',
-                status: 'new',
-                date: '2024-01-15'
-            },
-            {
-                id: 2,
-                name: 'Sarah Johnson',
-                email: 'sarah.j@email.com',
-                phone: '(281) 555-0102',
-                service: 'lawn-maintenance',
-                budget: '1000-5000',
-                message: 'Need regular lawn care service',
-                status: 'contacted',
-                date: '2024-01-14'
-            },
-            {
-                id: 3,
-                name: 'Mike Davis',
-                email: 'mike.davis@email.com',
-                phone: '(281) 555-0103',
-                service: 'hardscaping',
-                budget: '10000-25000',
-                message: 'Want to add a patio and fire pit',
-                status: 'quoted',
-                date: '2024-01-13'
-            }
-        ],
-        customers: [
-            {
-                id: 1,
-                name: 'Robert Wilson',
-                email: 'robert.wilson@email.com',
-                phone: '(281) 555-0201',
-                address: '123 Oak Street, Spring, TX',
-                totalProjects: 3,
-                totalValue: 15000,
-                lastService: '2024-01-10'
-            },
-            {
-                id: 2,
-                name: 'Lisa Chen',
-                email: 'lisa.chen@email.com',
-                phone: '(281) 555-0202',
-                address: '456 Pine Avenue, Spring, TX',
-                totalProjects: 2,
-                totalValue: 8500,
-                lastService: '2024-01-08'
-            },
-            {
-                id: 3,
-                name: 'David Brown',
-                email: 'david.brown@email.com',
-                phone: '(281) 555-0203',
-                address: '789 Maple Drive, Spring, TX',
-                totalProjects: 1,
-                totalValue: 12000,
-                lastService: '2024-01-05'
-            }
-        ],
-        projects: [
-            {
-                id: 1,
-                name: 'Wilson Backyard Renovation',
-                customer: 'Robert Wilson',
-                serviceType: 'landscape-design',
-                value: 8500,
-                status: 'completed',
-                startDate: '2023-12-01',
-                completion: 100
-            },
-            {
-                id: 2,
-                name: 'Chen Garden Installation',
-                customer: 'Lisa Chen',
-                serviceType: 'plant-installation',
-                value: 3200,
-                status: 'inprogress',
-                startDate: '2024-01-05',
-                completion: 75
-            },
-            {
-                id: 3,
-                name: 'Brown Patio Construction',
-                customer: 'David Brown',
-                serviceType: 'hardscaping',
-                value: 12000,
-                status: 'inprogress',
-                startDate: '2024-01-10',
-                completion: 45
-            }
-        ]
-    };
-    
+    // window.crmData = {
+    //     leads: [
+    //         {
+    //             id: 1,
+    //             name: 'John Smith',
+    //             email: 'john.smith@email.com',
+    //             phone: '(281) 555-0101',
+    //             service: 'landscape-design',
+    //             budget: '5000-10000',
+    //             message: 'Looking for a complete backyard redesign',
+    //             status: 'new',
+    //             date: '2024-01-15'
+    //         },
+    //         {
+    //             id: 2,
+    //             name: 'Sarah Johnson',
+    //             email: 'sarah.j@email.com',
+    //             phone: '(281) 555-0102',
+    //             service: 'lawn-maintenance',
+    //             budget: '1000-5000',
+    //             message: 'Need regular lawn care service',
+    //             status: 'contacted',
+    //             date: '2024-01-14'
+    //         },
+    //         {
+    //             id: 3,
+    //             name: 'Mike Davis',
+    //             email: 'mike.davis@email.com',
+    //             phone: '(281) 555-0103',
+    //             service: 'hardscaping',
+    //             budget: '10000-25000',
+    //             message: 'Want to add a patio and fire pit',
+    //             status: 'quoted',
+    //             date: '2024-01-13'
+    //         }
+    //     ],
+    //     customers: [
+    //         {
+    //             id: 1,
+    //             name: 'Robert Wilson',
+    //             email: 'robert.wilson@email.com',
+    //             phone: '(281) 555-0201',
+    //             address: '123 Oak Street, Spring, TX',
+    //             totalProjects: 3,
+    //             totalValue: 15000,
+    //             lastService: '2024-01-10'
+    //         },
+    //         {
+    //             id: 2,
+    //             name: 'Lisa Chen',
+    //             email: 'lisa.chen@email.com',
+    //             phone: '(281) 555-0202',
+    //             address: '456 Pine Avenue, Spring, TX',
+    //             totalProjects: 2,
+    //             totalValue: 8500,
+    //             lastService: '2024-01-08'
+    //         },
+    //         {
+    //             id: 3,
+    //             name: 'David Brown',
+    //             email: 'david.brown@email.com',
+    //             phone: '(281) 555-0203',
+    //             address: '789 Maple Drive, Spring, TX',
+    //             totalProjects: 1,
+    //             totalValue: 12000,
+    //             lastService: '2024-01-05'
+    //         }
+    //     ],
+    //     projects: [
+    //         {
+    //             id: 1,
+    //             name: 'Wilson Backyard Renovation',
+    //             customer: 'Robert Wilson',
+    //             serviceType: 'landscape-design',
+    //             value: 8500,
+    //             status: 'completed',
+    //             startDate: '2023-12-01',
+    //             completion: 100
+    //         },
+    //         {
+    //             id: 2,
+    //             name: 'Chen Garden Installation',
+    //             customer: 'Lisa Chen',
+    //             serviceType: 'plant-installation',
+    //             value: 3200,
+    //             status: 'inprogress',
+    //             startDate: '2024-01-05',
+    //             completion: 75
+    //         },
+    //         {
+    //             id: 3,
+    //             name: 'Brown Patio Construction',
+    //             customer: 'David Brown',
+    //             serviceType: 'hardscaping',
+    //             value: 12000,
+    //             status: 'inprogress',
+    //             startDate: '2024-01-10',
+    //             completion: 45
+    //         }
+    //     ]
+    // };
+     console.log("Sample data loading disabled - leads will be stored in Azure Table Storage");
     // Display initial data
     displayLeads();
+    function displayLeads() {
+    const leadsTableBody = document.getElementById('leadsTableBody');
+    if (!leadsTableBody) {
+        console.log('Leads table not found - CRM section may not be present');
+        return;
+    }
+    
+    const leads = window.crmData.leads || [];
+    
+    if (leads.length === 0) {
+        leadsTableBody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: #666;">No leads found</td></tr>';
+        return;
+    }
+    
+    leadsTableBody.innerHTML = leads.map(lead => `
+        <tr>
+            <td>${lead.name}</td>
+            <td>${lead.email}</td>
+            <td>${lead.phone}</td>
+            <td>${formatService(lead.service)}</td>
+            <td>${formatBudget(lead.budget)}</td>
+            <td><span class="status-badge status-${lead.status}">${lead.status}</span></td>
+            <td>${lead.date}</td>
+        </tr>
+    `).join('');
+}
 }
 
 // Additional CSS for notifications (injected via JavaScript)
