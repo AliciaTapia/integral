@@ -1,7 +1,7 @@
 // Integral Exterior Website JavaScript
 
 // Initialize the website when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     initializeWebsite();
 });
 
@@ -12,173 +12,173 @@ function initializeWebsite() {
     setupContactForm();
     setupCRMSystem();
     setupAnimations();
-  //  loadSampleData();
+    //  loadSampleData();
 
-// Mobile Menu Setup
-function setupMobileMenu() {
-    const mobileToggle = document.querySelector('.mobile-menu-toggle');
-    const navLinks = document.querySelector('.nav-links');
-    
-    if (mobileToggle) {
-        mobileToggle.addEventListener('click', function() {
-            navLinks.classList.toggle('active');
-            this.classList.toggle('active');
+    // Mobile Menu Setup
+    function setupMobileMenu() {
+        const mobileToggle = document.querySelector('.mobile-menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        if (mobileToggle) {
+            mobileToggle.addEventListener('click', function () {
+                navLinks.classList.toggle('active');
+                this.classList.toggle('active');
+            });
+        }
+
+        // Close mobile menu when clicking on a link
+        const navLinkItems = document.querySelectorAll('.nav-links a');
+        navLinkItems.forEach(link => {
+            link.addEventListener('click', function () {
+                navLinks.classList.remove('active');
+                mobileToggle.classList.remove('active');
+            });
         });
     }
-    
-    // Close mobile menu when clicking on a link
-    const navLinkItems = document.querySelectorAll('.nav-links a');
-    navLinkItems.forEach(link => {
-        link.addEventListener('click', function() {
-            navLinks.classList.remove('active');
-            mobileToggle.classList.remove('active');
-        });
-    });
-}
 
-// Smooth Scrolling Setup
-function setupSmoothScrolling() {
-    const links = document.querySelectorAll('a[href^="#"]');
-    
-    links.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            const targetId = this.getAttribute('href').substring(1);
-            const targetElement = document.getElementById(targetId);
-            
-            if (targetElement) {
-                const headerOffset = 80;
-                const elementPosition = targetElement.offsetTop;
-                const offsetPosition = elementPosition - headerOffset;
-                
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
-}
+    // Smooth Scrolling Setup
+    function setupSmoothScrolling() {
+        const links = document.querySelectorAll('a[href^="#"]');
 
-// Contact Form Setup
-async function setupContactForm() {
-    const contactForm = document.getElementById('contactForm');
-    
-    if (contactForm) {
-        contactForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const formData = new FormData(this);
-            const leadData = {
-                name: formData.get('name'),
-                email: formData.get('email'),
-                phone: formData.get('phone'),
-                service: formData.get('service'),
-                budget: formData.get('budget'),
-                message: formData.get('message')
-            };
-            
-            try {
-                const response = await fetch('https://red-grass-08edfac10.2.azurestaticapps.net/api/storeLeads', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(leadData)
-                });
-                
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
+        links.forEach(link => {
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    const headerOffset = 80;
+                    const elementPosition = targetElement.offsetTop;
+                    const offsetPosition = elementPosition - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
                 }
-                
-                const result = await response.json();
-                
-                if (result.success) {
-                    showNotification('Thank you! Your quote request has been submitted. We\'ll contact you soon!', 'success');
-                    this.reset();
-                } else {
+            });
+        });
+    }
+
+    // Contact Form Setup
+    async function setupContactForm() {
+        const contactForm = document.getElementById('contactForm');
+
+        if (contactForm) {
+            contactForm.addEventListener('submit', async function (e) {
+                e.preventDefault();
+
+                const formData = new FormData(this);
+                const leadData = {
+                    name: formData.get('name'),
+                    email: formData.get('email'),
+                    phone: formData.get('phone'),
+                    service: formData.get('service'),
+                    budget: formData.get('budget'),
+                    message: formData.get('message')
+                };
+
+                try {
+                    const response = await fetch('https://red-grass-08edfac10.2.azurestaticapps.net/api/storeLeads', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(leadData)
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+
+                    const result = await response.json();
+
+                    if (result.success) {
+                        showNotification('Thank you! Your quote request has been submitted. We\'ll contact you soon!', 'success');
+                        this.reset();
+                    } else {
+                        showNotification('There was an error submitting your request. Please try again.', 'error');
+                    }
+                } catch (error) {
+                    console.error('Error submitting form:', error);
                     showNotification('There was an error submitting your request. Please try again.', 'error');
                 }
-            } catch (error) {
-                console.error('Error submitting form:', error);
-                showNotification('There was an error submitting your request. Please try again.', 'error');
-            }
+            });
+        }
+    }
+
+    // CRM System Setup
+    function setupCRMSystem() {
+        // Initialize data structures
+        if (!window.crmData) {
+            window.crmData = {
+                leads: [],
+                customers: [],
+                projects: []
+            };
+        }
+    }
+
+    // Tab switching functionality
+    function showTab(tabName) {
+        // Hide all tab contents
+        const tabContents = document.querySelectorAll('.tab-content');
+        tabContents.forEach(content => {
+            content.classList.remove('active');
         });
-    }
-}
 
-// CRM System Setup
-function setupCRMSystem() {
-    // Initialize data structures
-    if (!window.crmData) {
-        window.crmData = {
-            leads: [],
-            customers: [],
-            projects: []
-        };
-    }
-}
+        // Remove active class from all buttons
+        const tabButtons = document.querySelectorAll('.tab-button');
+        tabButtons.forEach(button => {
+            button.classList.remove('active');
+        });
 
-// Tab switching functionality
-function showTab(tabName) {
-    // Hide all tab contents
-    const tabContents = document.querySelectorAll('.tab-content');
-    tabContents.forEach(content => {
-        content.classList.remove('active');
-    });
-    
-    // Remove active class from all buttons
-    const tabButtons = document.querySelectorAll('.tab-button');
-    tabButtons.forEach(button => {
-        button.classList.remove('active');
-    });
-    
-    // Show selected tab content
-    const selectedTab = document.getElementById(tabName);
-    if (selectedTab) {
-        selectedTab.classList.add('active');
-    }
-    
-    // Add active class to clicked button
-    const clickedButton = event.target;
-    clickedButton.classList.add('active');
-    
-    // Display appropriate data
-    switch(tabName) {
-        case 'leads':
-            displayLeads();
-            break;
-        case 'customers':
-            displayCustomers();
-            break;
-        case 'projects':
-            displayProjects();
-            break;
-    }
-}
+        // Show selected tab content
+        const selectedTab = document.getElementById(tabName);
+        if (selectedTab) {
+            selectedTab.classList.add('active');
+        }
 
-//Lead Management Functions
-function addLead(leadData) {
-    if (!window.crmData.leads) {
-        window.crmData.leads = [];
-    }
-    window.crmData.leads.push(leadData);
-    saveCRMData();
-}
+        // Add active class to clicked button
+        const clickedButton = event.target;
+        clickedButton.classList.add('active');
 
-function displayLeads() {
-    const leadsTableBody = document.getElementById('leadsTableBody');
-    if (!leadsTableBody) return;
-    
-    const leads = window.crmData.leads || [];
-    
-    if (leads.length === 0) {
-        leadsTableBody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: #666;">No leads found</td></tr>';
-        return;
+        // Display appropriate data
+        switch (tabName) {
+            case 'leads':
+                displayLeads();
+                break;
+            case 'customers':
+                displayCustomers();
+                break;
+            case 'projects':
+                displayProjects();
+                break;
+        }
     }
-    
-    leadsTableBody.innerHTML = leads.map(lead => `
+
+    //Lead Management Functions
+    function addLead(leadData) {
+        if (!window.crmData.leads) {
+            window.crmData.leads = [];
+        }
+        window.crmData.leads.push(leadData);
+        saveCRMData();
+    }
+
+    function displayLeads() {
+        const leadsTableBody = document.getElementById('leadsTableBody');
+        if (!leadsTableBody) return;
+
+        const leads = window.crmData.leads || [];
+
+        if (leads.length === 0) {
+            leadsTableBody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: #666;">No leads found</td></tr>';
+            return;
+        }
+
+        leadsTableBody.innerHTML = leads.map(lead => `
         <tr>
             <td>${lead.name}</td>
             <td>${lead.email}</td>
@@ -189,20 +189,20 @@ function displayLeads() {
             <td>${lead.date}</td>
         </tr>
     `).join('');
-}
-
-function displayCustomers() {
-    const customersTableBody = document.getElementById('customersTableBody');
-    if (!customersTableBody) return;
-    
-    const customers = window.crmData.customers || [];
-    
-    if (customers.length === 0) {
-        customersTableBody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: #666;">No customers found</td></tr>';
-        return;
     }
-    
-    customersTableBody.innerHTML = customers.map(customer => `
+
+    function displayCustomers() {
+        const customersTableBody = document.getElementById('customersTableBody');
+        if (!customersTableBody) return;
+
+        const customers = window.crmData.customers || [];
+
+        if (customers.length === 0) {
+            customersTableBody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: #666;">No customers found</td></tr>';
+            return;
+        }
+
+        customersTableBody.innerHTML = customers.map(customer => `
         <tr>
             <td>${customer.name}</td>
             <td>${customer.email}</td>
@@ -213,20 +213,20 @@ function displayCustomers() {
             <td>${customer.lastService}</td>
         </tr>
     `).join('');
-}
-
-function displayProjects() {
-    const projectsTableBody = document.getElementById('projectsTableBody');
-    if (!projectsTableBody) return;
-    
-    const projects = window.crmData.projects || [];
-    
-    if (projects.length === 0) {
-        projectsTableBody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: #666;">No projects found</td></tr>';
-        return;
     }
-    
-    projectsTableBody.innerHTML = projects.map(project => `
+
+    function displayProjects() {
+        const projectsTableBody = document.getElementById('projectsTableBody');
+        if (!projectsTableBody) return;
+
+        const projects = window.crmData.projects || [];
+
+        if (projects.length === 0) {
+            projectsTableBody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: #666;">No projects found</td></tr>';
+            return;
+        }
+
+        projectsTableBody.innerHTML = projects.map(project => `
         <tr>
             <td>${project.name}</td>
             <td>${project.customer}</td>
@@ -237,52 +237,52 @@ function displayProjects() {
             <td>${project.completion}%</td>
         </tr>
     `).join('');
-}
+    }
 
-// Utility Functions
-function formatService(service) {
-    if (!service) return 'Not specified';
-    
-    const serviceMap = {
-        'landscape-design': 'Landscape Design',
-        'lawn-maintenance': 'Lawn Maintenance',
-        'hardscaping': 'Hardscaping',
-        'irrigation': 'Irrigation Systems',
-        'tree-services': 'Tree Services',
-        'plant-installation': 'Plant Installation'
-    };
-    
-    return serviceMap[service] || service;
-}
+    // Utility Functions
+    function formatService(service) {
+        if (!service) return 'Not specified';
 
-function formatBudget(budget) {
-    if (!budget) return 'Not specified';
-    
-    const budgetMap = {
-        'under-1000': 'Under $1,000',
-        '1000-5000': '$1,000 - $5,000',
-        '5000-10000': '$5,000 - $10,000',
-        '10000-25000': '$10,000 - $25,000',
-        'over-25000': 'Over $25,000'
-    };
-    
-    return budgetMap[budget] || budget;
-}
+        const serviceMap = {
+            'landscape-design': 'Landscape Design',
+            'lawn-maintenance': 'Lawn Maintenance',
+            'hardscaping': 'Hardscaping',
+            'irrigation': 'Irrigation Systems',
+            'tree-services': 'Tree Services',
+            'plant-installation': 'Plant Installation'
+        };
 
-function showNotification(message, type = 'info') {
-    // Create notification element
-    const notification = document.createElement('div');
-    notification.className = `notification notification-${type}`;
-    notification.innerHTML = `
+        return serviceMap[service] || service;
+    }
+
+    function formatBudget(budget) {
+        if (!budget) return 'Not specified';
+
+        const budgetMap = {
+            'under-1000': 'Under $1,000',
+            '1000-5000': '$1,000 - $5,000',
+            '5000-10000': '$5,000 - $10,000',
+            '10000-25000': '$10,000 - $25,000',
+            'over-25000': 'Over $25,000'
+        };
+
+        return budgetMap[budget] || budget;
+    }
+
+    function showNotification(message, type = 'info') {
+        // Create notification element
+        const notification = document.createElement('div');
+        notification.className = `notification notification-${type}`;
+        notification.innerHTML = `
         <div class="notification-content">
             <span class="notification-icon">${type === 'success' ? '✓' : 'ℹ'}</span>
             <span class="notification-message">${message}</span>
             <button class="notification-close">&times;</button>
         </div>
     `;
-    
-    // Add styles
-    notification.style.cssText = `
+
+        // Add styles
+        notification.style.cssText = `
         position: fixed;
         top: 20px;
         right: 20px;
@@ -295,58 +295,58 @@ function showNotification(message, type = 'info') {
         animation: slideInRight 0.3s ease-out;
         max-width: 400px;
     `;
-    
-    // Add to document
-    document.body.appendChild(notification);
-    
-    // Add close functionality
-    const closeBtn = notification.querySelector('.notification-close');
-    closeBtn.addEventListener('click', () => {
-        notification.remove();
-    });
-    
-    // Auto remove after 5 seconds
-    setTimeout(() => {
-        if (notification.parentElement) {
-            notification.style.animation = 'slideOutRight 0.3s ease-out';
-            setTimeout(() => notification.remove(), 300);
-        }
-    }, 5000);
-}
 
-// Animation Setup
-function setupAnimations() {
-    // Intersection Observer for scroll animations
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
-            }
+        // Add to document
+        document.body.appendChild(notification);
+
+        // Add close functionality
+        const closeBtn = notification.querySelector('.notification-close');
+        closeBtn.addEventListener('click', () => {
+            notification.remove();
         });
-    }, observerOptions);
-    
-    // Observe service cards
-    const serviceCards = document.querySelectorAll('.service-card');
-    serviceCards.forEach(card => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(30px)';
-        observer.observe(card);
-    });
-}
 
-// Data Management
-function saveCRMData() {
-    // In a real application, this would save to a database
-    // For now, we'll keep it in memory
-    console.log('CRM data saved:', window.crmData);
-}
+        // Auto remove after 5 seconds
+        setTimeout(() => {
+            if (notification.parentElement) {
+                notification.style.animation = 'slideOutRight 0.3s ease-out';
+                setTimeout(() => notification.remove(), 300);
+            }
+        }, 5000);
+    }
 
-//function loadSampleData() {
+    // Animation Setup
+    function setupAnimations() {
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
+                }
+            });
+        }, observerOptions);
+
+        // Observe service cards
+        const serviceCards = document.querySelectorAll('.service-card');
+        serviceCards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            observer.observe(card);
+        });
+    }
+
+    // Data Management
+    function saveCRMData() {
+        // In a real application, this would save to a database
+        // For now, we'll keep it in memory
+        console.log('CRM data saved:', window.crmData);
+    }
+
+    //function loadSampleData() {
     // Load sample data for demonstration
     // window.crmData = {
     //     leads: [
@@ -449,24 +449,24 @@ function saveCRMData() {
     //         }
     //     ]
     // };
-     console.log("Sample data loading disabled - leads will be stored in Azure Table Storage");
+    console.log("Sample data loading disabled - leads will be stored in Azure Table Storage");
     // Display initial data
     displayLeads();
     function displayLeads() {
-    const leadsTableBody = document.getElementById('leadsTableBody');
-    if (!leadsTableBody) {
-        console.log('Leads table not found - CRM section may not be present');
-        return;
-    }
-    
-    const leads = window.crmData.leads || [];
-    
-    if (leads.length === 0) {
-        leadsTableBody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: #666;">No leads found</td></tr>';
-        return;
-    }
-    
-    leadsTableBody.innerHTML = leads.map(lead => `
+        const leadsTableBody = document.getElementById('leadsTableBody');
+        if (!leadsTableBody) {
+            console.log('Leads table not found - CRM section may not be present');
+            return;
+        }
+
+        const leads = window.crmData.leads || [];
+
+        if (leads.length === 0) {
+            leadsTableBody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: #666;">No leads found</td></tr>';
+            return;
+        }
+
+        leadsTableBody.innerHTML = leads.map(lead => `
         <tr>
             <td>${lead.name}</td>
             <td>${lead.email}</td>
@@ -477,7 +477,7 @@ function saveCRMData() {
             <td>${lead.date}</td>
         </tr>
     `).join('');
-}
+    }
 }
 
 // Additional CSS for notifications (injected via JavaScript)
@@ -543,7 +543,7 @@ function generateReport() {
     const leads = window.crmData.leads || [];
     const customers = window.crmData.customers || [];
     const projects = window.crmData.projects || [];
-    
+
     const report = {
         totalLeads: leads.length,
         totalCustomers: customers.length,
@@ -561,7 +561,7 @@ function generateReport() {
             completed: projects.filter(p => p.status === 'completed').length
         }
     };
-    
+
     console.log('Business Report:', report);
     return report;
 }
