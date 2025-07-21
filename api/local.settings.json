@@ -1,0 +1,12 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AZURE_STORAGE_CONNECTION_STRING":"DefaultEndpointsProtocol=https;AccountName=integralexteriorstgeacct;AccountKey=2DzeSumhhYcbP93EiV9az7+3/Tp9WLDbSqwGl2gPDIiCoOztyNVHvKZcGf6g/WrJRCwBeZruQ70r+ASt1zShdg==;EndpointSuffix=core.windows.net",
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true"
+  },
+  "Host": {
+    "LocalHttpPort": 7071,
+    "CORS": "*"
+  }
+}
