@@ -449,7 +449,7 @@ function initializeWebsite() {
     //         }
     //     ]
     // };
-    console.log("Sample data loading disabled - leads will be stored in Azure Table Storage");
+ //   console.log("Sample data loading disabled - leads will be stored in Azure Table Storage");
     // Display initial data
     displayLeads();
     function displayLeads() {
@@ -536,7 +536,7 @@ styleSheet.textContent = notificationStyles;
 document.head.appendChild(styleSheet);
 
 // Expose functions globally for HTML onclick handlers
-window.showTab = showTab;
+//window.showTab = showTab;
 
 // Additional utility functions
 function generateReport() {
