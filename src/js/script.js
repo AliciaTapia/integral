@@ -449,7 +449,7 @@ function initializeWebsite() {
     //         }
     //     ]
     // };
- //   console.log("Sample data loading disabled - leads will be stored in Azure Table Storage");
+    //   console.log("Sample data loading disabled - leads will be stored in Azure Table Storage");
     // Display initial data
     displayLeads();
     function displayLeads() {

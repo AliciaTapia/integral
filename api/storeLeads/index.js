@@ -3,7 +3,6 @@
 // It initializes the TableClient, handles CORS, and processes GET/POST requests
 
 
-// api/storeLeads/index.js (CORRECTED VERSION)
 const { app } = require('@azure/functions');
 const { TableClient } = require('@azure/data-tables');
 
@@ -21,12 +20,19 @@ try {
 } catch (error) {
     console.error('Failed to initialize table client:', error);
 }
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-            'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-            'Access-Control-Max-Age': '86400'
-        };
 
+// CORS headers
+const corsHeaders = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    'Access-Control-Max-Age': '86400'
+};
+
+app.http('storeLeads', {
+    methods: ['GET', 'POST', 'OPTIONS'],
+    authLevel: 'anonymous',
+    handler: async (request, context) => {
         // Handle CORS preflight
         if (request.method === 'OPTIONS') {
             return {
@@ -36,7 +42,7 @@ try {
             };
         }
 
-      // Handle GET - health check
+        // Handle GET - health check
         if (request.method === 'GET') {
             try {
                 const hasConnectionString = !!process.env.AZURE_STORAGE_CONNECTION_STRING;
