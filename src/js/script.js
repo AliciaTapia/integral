@@ -13,7 +13,6 @@ function initializeWebsite() {
     setupCRMSystem();
     setupAnimations();
   //  loadSampleData();
-}
 
 // Mobile Menu Setup
 function setupMobileMenu() {
